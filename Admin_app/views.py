@@ -39,23 +39,12 @@ def admin_logout(request):
     return redirect('admin_index')         
 
 def admin_index(request):
-    c=0
-    p=0
-    r=0
-    u=0
-    data = ADD_Category.objects.all()
-    data1=ADD_Products.objects.all()
-    data2=ADD_Recipe.objects.all()
-    data3=Registeration.objects.all()
-    for i in data:
-        c+=1
-    for i in data1:
-        p+=1
-    for i in data2:
-        r+=1
-    for i in data3:
-        u+=1            
-    return render(request,'admin_index.html',{'data':data,'c':c,'p':p,'r':r,'u':u})
+    c=ADD_Category.objects.count()
+    p=ADD_Products.objects.count()
+    r=ADD_Recipe.objects.count()
+    u=Registeration.objects.count()
+             
+    return render(request,'admin_index.html',{'c':c,'p':p,'r':r,'u':u})
 
 def add_category(request):
     return render(request,'add_category.html')    
